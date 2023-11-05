@@ -9,3 +9,7 @@ form {
 button {
   width: 40%;
 }
+
+.errors {
+  color: red;
+}

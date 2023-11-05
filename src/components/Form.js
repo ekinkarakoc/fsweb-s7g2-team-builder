@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
 import "./Form.css";
 
-const Form = ({ submitHandler, changeHandler, formData }) => {
+const Form = ({ submitHandler, changeHandler, formData, isValid, errors }) => {
   return (
     <form onSubmit={submitHandler}>
       <label>
@@ -13,6 +14,7 @@ const Form = ({ submitHandler, changeHandler, formData }) => {
           onChange={changeHandler}
         />
       </label>
+      <div className="errors">{errors.name}</div>
       <label>
         Email:
         <input
@@ -23,6 +25,7 @@ const Form = ({ submitHandler, changeHandler, formData }) => {
           onChange={changeHandler}
         />
       </label>
+      <div className="errors">{errors.email}</div>
       <label>
         Rol:
         <input
@@ -33,7 +36,20 @@ const Form = ({ submitHandler, changeHandler, formData }) => {
           onChange={changeHandler}
         />
       </label>
-      <button type="submit">Submit</button>
+      <div className="errors">{errors.rol}</div>
+      <label>
+        <input
+          type="checkbox"
+          name="terms"
+          checked={formData.terms}
+          onChange={changeHandler}
+        />
+        Şartları Kabul Ediyorum
+      </label>
+      <div className="errors">{errors.terms}</div>
+      <button type="submit" disabled={!isValid}>
+        Submit
+      </button>
     </form>
   );
 };
